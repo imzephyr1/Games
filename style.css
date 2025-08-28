@@ -123,3 +123,10 @@
                 font-size: 1rem; /* Smaller button font size for mobile */
             }
         }
+
+       .winner {
+         background-color: #4caf4fea; 
+         color: white; 
+         font-weight: bold;
+       }
+

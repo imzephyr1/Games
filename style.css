@@ -1,0 +1,125 @@
+       @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Added for better box model handling */
+        }
+
+        body {
+            background-image: url(ticbg-modified.jpeg);
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+            overflow: hidden; /* Prevent scrollbars from appearing */
+        }
+
+        body.dark-mode {
+            background-image: url(Untitled\ design.png);
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        .gname {
+            font-family: "Merienda", cursive;
+            margin-top: 5vh; /* Use viewport height for responsiveness */
+            padding: 2px;
+            cursor: pointer;
+            font-size: 2.5rem; /* Responsive font size */
+        }
+
+        hr {
+            margin: 0 auto;
+            width: 80%; /* Responsive width */
+            height: 3px;
+            background-color: black;
+        }
+
+        .container {
+            margin: 5vh auto; /* Use viewport height for spacing */
+            width: 60vw; /* Responsive width */
+            aspect-ratio: 1; /* Maintain a square aspect ratio */
+            max-width: 450px; /* Maximum width */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            background-color: rgba(222, 221, 221, 0.730);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.698);
+        }
+
+        .tile {
+            font-family: "Merienda", cursive;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5vw; /* Responsive font size */
+            cursor: pointer;
+        }
+
+        .dark-mode-controls {
+            display: flex;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .btn {
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            background-color: rgba(0, 0, 0, 0.365);
+            color: white;
+            border: none;
+            margin: 0 10px;
+            padding: 5px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.713);
+            font-size: 1.2rem; /* Responsive button font size */
+        }
+
+        .btn:hover {
+            background-color: #12121221;
+            color: black;
+        }
+
+        .gamestats {
+            font-size: 1.5rem;
+            margin: 20px auto;
+        }
+
+        @keyframes drop {
+            0% {
+                transform: translateY(-100%);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none; /* Prevent interaction */
+            animation: drop 2s forwards; /* Animation duration */
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .gname {
+                font-size: 2rem; /* Smaller font size for mobile */
+            }
+
+            .tile {
+                font-size: 8vw; /* Larger tile font size for mobile */
+            }
+
+            .gamestats {
+                font-size: 1.2rem; /* Smaller game stats font size for mobile */
+            }
+
+            .btn {
+                font-size: 1rem; /* Smaller button font size for mobile */
+            }
+        }

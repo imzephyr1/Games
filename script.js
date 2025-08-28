@@ -15,20 +15,32 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", toggleDarkMode);
 });
 
+
 function checkWinner() {
-  if (
-    (arr[0] !== null && arr[0] == arr[1] && arr[1] == arr[2]) ||
-    (arr[3] !== null && arr[3] == arr[4] && arr[4] == arr[5]) ||
-    (arr[6] !== null && arr[6] == arr[7] && arr[7] == arr[8]) ||
-    (arr[0] !== null && arr[0] == arr[3] && arr[3] == arr[6]) ||
-    (arr[1] !== null && arr[1] == arr[4] && arr[4] == arr[7]) ||
-    (arr[2] !== null && arr[2] == arr[5] && arr[5] == arr[8]) ||
-    (arr[0] !== null && arr[0] == arr[4] && arr[4] == arr[8]) ||
-    (arr[2] !== null && arr[2] == arr[4] && arr[4] == arr[6])
-  ) {
-    document.getElementById("running").textContent = `Winner is ${currPlayer}`;
-    document.ge
-    return true;
+  // Define all winning combinations
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const combo of winningCombinations) {
+    const [a, b, c] = combo;
+    if (
+      arr[a] !== null &&
+      arr[a] === arr[b] &&
+      arr[b] === arr[c]
+    ) {
+      document.getElementById("running").textContent = `Winner is ${currPlayer}`;
+      highlightWinningTiles(combo);
+      clearNonWinningTiles(combo);
+      return true;
+    }
   }
 
   if (!arr.some((e) => e === null)) {
@@ -38,6 +50,24 @@ function checkWinner() {
 
   return false;
 }
+
+function highlightWinningTiles(winningTiles) {
+  winningTiles.forEach(i => {
+    const tile = document.getElementById(i);
+    tile.classList.add('winner');
+  });
+}
+
+function clearNonWinningTiles(winningTiles) {
+  for (let i = 0; i < arr.length; i++) {
+    if (!winningTiles.includes(i)) {
+      const tile = document.getElementById(i);
+      tile.textContent = "";
+      tile.classList.remove('winner');
+    }
+  }
+}
+
 
 function handleClick(tile) {
   const id = Number(tile.id);
